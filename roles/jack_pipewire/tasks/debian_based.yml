@@ -1,0 +1,5 @@
+- name: install Supercollider
+  apt:
+    name: jack2
+    update_cache: yes
+  become: yes

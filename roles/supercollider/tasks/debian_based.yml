@@ -1,0 +1,5 @@
+- name: install Supercollider
+  apt:
+    name: supercollider
+    update_cache: yes
+  become: yes

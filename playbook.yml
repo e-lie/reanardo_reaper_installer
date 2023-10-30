@@ -1,0 +1,8 @@
+
+- name: install flowdot avec reaper
+  hosts: localhost
+  connection: local
+
+  roles:
+  - name: supercollider
+    tags: supercollider
