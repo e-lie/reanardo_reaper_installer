@@ -1,0 +1,8 @@
+- name: ensure python-pip present
+  pacman:
+    name:
+      - python-pip
+      - python-virtualenv
+      - tk
+  become: yes
+

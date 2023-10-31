@@ -6,7 +6,11 @@
 - name: Download {{ application_name }}
   ansible.builtin.get_url:
     url: "{{ app_url }}"
-    dest: "/home/{{ ansible_user_id }}/bin/{{ application_name }}.AppImage"
+    dest: "/home/{{ ansible_user_id }}/bin/{{ application_name }}.tar.xz"
     mode: 0644
 
-# https://www.reaper.fm/files/6.x/reaper683_linux_x86_64.tar.xz
+- name: Uncompress reaper
+  ansible.builtin.unarchive:
+    src: "/home/{{ ansible_user_id }}/bin/{{ application_name }}.tar.xz"
+    dest: "/home/{{ ansible_user_id }}/bin/"
+    remote_src: yes

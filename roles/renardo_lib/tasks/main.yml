@@ -1,0 +1,29 @@
+- include_tasks: debian_based.yml
+  when: ansible_os_family == "Debian"
+
+- include_tasks: archlinux_based.yml
+  when: ansible_os_family == "Archlinux"
+
+- name: copy renardo lib
+  synchronize:
+    src: "/home/{{ ansible_user_id }}/reanardo_reaper_installer/roles/renardo_lib/files/renardo_lib"
+    dest: "/home/{{ ansible_user_id }}/bin"
+  delegate_to: "localhost"
+
+- name: install renardo lib deps manually
+  pip:
+    name:
+      - treelib
+      - fastnumbers
+      - python-reapy
+      - playsound
+      - mido
+      - jack-client
+    virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv
+
+- name: install renardo lib
+  pip:
+    name: '.'
+    chdir: /home/{{ ansible_user_id }}/bin/renardo_lib
+    editable: yes
+    virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv

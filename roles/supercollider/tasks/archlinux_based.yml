@@ -8,4 +8,5 @@
     name:
       - supercollider
       - sc3-plugins
+      - carla
   become: yes

@@ -4,11 +4,17 @@
   connection: local
 
   roles:
-  - name: jack_pipewire
-    tags: jack_pipewire
+  # - name: jack_pipewire
+  #   tags: jack_pipewire
   
-  - name: supercollider
-    tags: supercollider
+  # - name: supercollider
+    # tags: supercollider
+
+  - name: renardo_lib
+    tags: renardo_lib
   
   # - name: pulsar
   #   tags: pulsar
+
+  - name: reaper
+    tags: reaper

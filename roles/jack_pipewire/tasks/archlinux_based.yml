@@ -13,7 +13,7 @@
       - pulseaudio-zeroconf
       - pulseaudio-alsa
       - pulseaudio
-      - pulseaudio-bluetooth
+      # - pulseaudio-bluetooth
       - pulseaudio-ctl
       - jack2
     state: absent
@@ -28,7 +28,6 @@
       - wireplumber
       - manjaro-pipewire
       - pipewire-jack
-      - pulseaudio-bluetooth
-      - carla
+      # - pulseaudio-bluetooth
   become: yes
   when: not test_manjaro.failed
