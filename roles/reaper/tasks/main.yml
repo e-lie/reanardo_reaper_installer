@@ -14,3 +14,10 @@
     src: "/home/{{ ansible_user_id }}/bin/{{ application_name }}.tar.xz"
     dest: "/home/{{ ansible_user_id }}/bin/"
     remote_src: yes
+
+- name: Install Reaper by script
+  shell: bash install-reaper.sh --install /opt --integrate-desktop
+  args:
+    chdir: /home/{{ ansible_user_id }}/bin/reaper_linux_x86_64/
+    creates: /opt/REAPER
+  become: yes
