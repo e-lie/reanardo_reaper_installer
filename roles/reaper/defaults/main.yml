@@ -1,0 +1,4 @@
+application_name: Pulsar
+app_url: "https://www.reaper.fm/files/6.x/reaper683_linux_x86_64.tar.xz"
+app_archive_dest: /home/{{ ansible_user_id }}/bin/reaper.tar.xz
+appimage_category: Development

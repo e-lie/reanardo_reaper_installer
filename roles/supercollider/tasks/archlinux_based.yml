@@ -1,0 +1,11 @@
+- name: update cache and install yay if not present
+  community.general.pacman:
+    name: yay
+    update_cache: yes
+  become: yes
+- name: install Supercollider + sc3-plugins
+  community.general.pacman:
+    name:
+      - supercollider
+      - sc3-plugins
+  become: yes

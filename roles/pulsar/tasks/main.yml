@@ -1,0 +1,33 @@
+- name: ensure user bin directory exists
+  file:
+    path: /home/{{ ansible_user_id }}/bin
+    state: directory
+
+- name: Download {{ application_name }} AppImage
+  ansible.builtin.get_url:
+    url: "{{ appimage_url }}"
+    dest: "/home/{{ ansible_user_id }}/bin/{{ application_name }}.AppImage"
+    mode: 0744
+    force: true
+
+# - name: Copy {{ application_name }} icon to bin
+#   ansible.builtin.copy:
+#     src: "files/{{ application_name }}.png" # TODO find pulsar png icon ?
+#     dest: "{{ appimage_icon }}"
+#     mode: 0644
+
+- name: ensure local desktop applications dir exists
+  file:
+    path: /home/{{ ansible_user_id }}/.local/share/applications
+    state: directory
+
+- name: "Create a .desktop file for {{ application_name }}"
+  ansible.builtin.template:
+    src: desktop_file.j2
+    dest: /home/{{ ansible_user_id }}/.local/share/applications/{{ application_name }}.desktop
+    mode: 0644
+    force: true
+
+- name: Update desktop file database
+  ansible.builtin.command: update-desktop-database ~/.local/share/applications
+  tags: always

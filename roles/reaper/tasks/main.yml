@@ -1,0 +1,12 @@
+- name: ensure user bin directory exists
+  file:
+    path: /home/{{ ansible_user_id }}/bin
+    state: directory
+
+- name: Download {{ application_name }}
+  ansible.builtin.get_url:
+    url: "{{ app_url }}"
+    dest: "/home/{{ ansible_user_id }}/bin/{{ application_name }}.AppImage"
+    mode: 0644
+
+# https://www.reaper.fm/files/6.x/reaper683_linux_x86_64.tar.xz

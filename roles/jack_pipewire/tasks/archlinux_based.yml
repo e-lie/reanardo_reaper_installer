@@ -1,0 +1,34 @@
+- name: register task to test if manjaro
+  pacman:
+    update_cache: yes
+    name: manjaro-system
+  become: yes
+  ignore_errors: yes
+  register: test_manjaro
+
+- name: remove manjaro pulse & jack
+  pacman:
+    name:
+      - manjaro-pulse
+      - pulseaudio-zeroconf
+      - pulseaudio-alsa
+      - pulseaudio
+      - pulseaudio-bluetooth
+      - pulseaudio-ctl
+      - jack2
+    state: absent
+    force: yes
+    extra_args: --recursive
+  become: yes
+  when: not test_manjaro.failed
+
+- name: install manjaro pipewire
+  pacman:
+    name:
+      - wireplumber
+      - manjaro-pipewire
+      - pipewire-jack
+      - pulseaudio-bluetooth
+      - carla
+  become: yes
+  when: not test_manjaro.failed

@@ -1,0 +1,5 @@
+application_name: Pulsar
+appimage_url: "https://download.pulsar-edit.dev/?os=linux&type=linux_appimage"
+appimage_dest: /home/{{ ansible_user_id }}/bin/{{ application_name }}.AppImage
+appimage_icon: None
+appimage_category: Development
