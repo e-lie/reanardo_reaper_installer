@@ -6,7 +6,7 @@
 
 - name: copy renardo lib
   synchronize:
-    src: "/home/{{ ansible_user_id }}/reanardo_reaper_installer/roles/renardo_lib/files/renardo_lib"
+    src: "{{ role_path }}/files/renardo_lib"
     dest: "/home/{{ ansible_user_id }}/bin"
   delegate_to: "localhost"
 

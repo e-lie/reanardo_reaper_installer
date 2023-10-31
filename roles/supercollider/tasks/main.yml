@@ -5,7 +5,7 @@
   when: ansible_os_family == "Archlinux"
 
 - name: Copy quarks to supercollider location
-  copy:
-    src: downloaded-quarks/    # note the '/' <-- !!!
-    dest: /home/{{ ansible_user_id }}/.local/share/SuperCollider/downloaded-quarks/
-    mode: 0644
+  synchronize:
+    src: "{{ role_path }}/files/downloaded-quarks/"
+    dest: /home/{{ ansible_user_id }}/.local/share/SuperCollider
+  delegate_to: "localhost"

@@ -13,7 +13,7 @@
       - pulseaudio-zeroconf
       - pulseaudio-alsa
       - pulseaudio
-      # - pulseaudio-bluetooth
+      - pulseaudio-bluetooth
       - pulseaudio-ctl
       - jack2
     state: absent
