@@ -29,9 +29,12 @@
 #     virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv
 
 - name: Install deps via pip at user level without venv
-  command: pip install python-reapy playsound mido --break-system-packages
+  command: pip install python-reapy playsound mido --break-system-packages && touch /home/{{ ansible_user_id }}/bin/renardo_lib_deps.flag
+  args:
+    creates: /home/{{ ansible_user_id }}/bin/renardo_lib_deps.flag
 
 - name: Install renardo via pip at user level without venv
-  command: pip install -e . --break-system-packages
+  command: pip install -e . --break-system-packages && touch /home/{{ ansible_user_id }}/bin/renardo_lib.flag
   args:
     chdir: /home/{{ ansible_user_id }}/bin/renardo_lib
+    creates: /home/{{ ansible_user_id }}/bin/renardo_lib.flag

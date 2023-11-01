@@ -7,5 +7,5 @@
 - name: Copy quarks to supercollider location
   synchronize:
     src: "{{ role_path }}/files/downloaded-quarks/"
-    dest: /home/{{ ansible_user_id }}/.local/share/SuperCollider
+    dest: /home/{{ ansible_user_id }}/.local/share/SuperCollider/downloaded-quarks
   delegate_to: "localhost"
