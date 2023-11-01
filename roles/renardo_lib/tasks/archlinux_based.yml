@@ -3,6 +3,9 @@
     name:
       - python-pip
       - python-virtualenv
+      - python-fastnumbers
+      - python-treelib
+      - python-jack-client
       - tk
   become: yes
 

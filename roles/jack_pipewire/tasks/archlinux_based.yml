@@ -28,6 +28,9 @@
       - wireplumber
       - manjaro-pipewire
       - pipewire-jack
+      - bluez
+      - bluez-utils
+      - blueman
       # - pulseaudio-bluetooth
   become: yes
   when: not test_manjaro.failed

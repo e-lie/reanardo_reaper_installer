@@ -10,20 +10,28 @@
     dest: "/home/{{ ansible_user_id }}/bin"
   delegate_to: "localhost"
 
-- name: install renardo lib deps manually
-  pip:
-    name:
-      - treelib
-      - fastnumbers
-      - python-reapy
-      - playsound
-      - mido
-      - jack-client
-    virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv
+# - name: install renardo lib deps manually
+#   pip:
+#     name:
+#       # - treelib # installed via pacman
+#       # - fastnumbers # installed via pacman
+#       - python-reapy
+#       - playsound
+#       - mido
+#       # - jack-client # installed via pacman
+#     virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv
 
-- name: install renardo lib
-  pip:
-    name: '.'
+# - name: install renardo lib
+#   pip:
+#     name: '.'
+#     chdir: /home/{{ ansible_user_id }}/bin/renardo_lib
+#     editable: yes
+#     virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv
+
+- name: Install deps via pip at user level without venv
+  command: pip install python-reapy playsound mido --break-system-packages
+
+- name: Install renardo via pip at user level without venv
+  command: pip install -e . --break-system-packages
+  args:
     chdir: /home/{{ ansible_user_id }}/bin/renardo_lib
-    editable: yes
-    virtualenv: /home/{{ ansible_user_id }}/bin/renardo_lib/venv
