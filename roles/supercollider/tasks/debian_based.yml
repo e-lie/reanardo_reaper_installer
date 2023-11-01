@@ -1,5 +1,26 @@
+- name: ensure user bin directory exists
+  file:
+    path: /home/{{ ansible_user_id }}/bin
+    state: directory
+
+- name: dl kxstudio repo deb file
+  ansible.builtin.get_url:
+    url: "https://launchpad.net/~kxstudio-debian/+archive/kxstudio/+files/kxstudio-repos_11.1.0_all.deb"
+    dest: "/home/{{ ansible_user_id }}/bin/kxstudio-repo.deb"
+    mode: 0644
+
+- name: Install kxstudio repo
+  apt:
+    deb: "/home/{{ ansible_user_id }}/bin/kxstudio-repo.deb"
+  become: yes
+
 - name: install Supercollider
   apt:
-    name: supercollider
+    name:
+      - supercollider
+      - sc3-plugins
+      - carla
+      - carla-vst
+      - vitalium-vst
     update_cache: yes
   become: yes
